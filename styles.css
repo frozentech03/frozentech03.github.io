@@ -1,14 +1,14 @@
 :root {
-  --green: #3e7b4f;
-  --green-mid: #4d8f5f;
-  --green-bright: #5cb85c;
-  --green-soft: #6aa87a;
+  --green: rgb(62, 102, 123);
+  --green-mid: rgb(75, 118, 140);
+  --green-bright: rgb(90, 135, 158);
+  --green-soft: rgb(110, 150, 170);
   --ink: #1a1a1a;
   --muted: #666666;
-  --line: #d9e2dc;
+  --line: #d4dee4;
   --paper: #ffffff;
-  --page-bg: #e8ece9;
-  --side-text: #f4f8f5;
+  --page-bg: #e8eef2;
+  --side-text: #f4f7fa;
   --font: "Source Sans 3", "Segoe UI", sans-serif;
 }
 
@@ -57,7 +57,7 @@ a:hover {
   max-width: 980px;
   margin: 1.5rem auto;
   background: var(--paper);
-  box-shadow: 0 8px 30px rgba(30, 50, 40, 0.12);
+  box-shadow: 0 8px 30px rgba(62, 102, 123, 0.14);
   min-height: calc(100vh - 4rem);
 }
 
@@ -535,8 +535,8 @@ a:hover {
 }
 
 .cv-download:hover {
-  background: #e8f3eb;
-  color: #15555c;
+  background: #e3edf2;
+  color: rgb(45, 78, 95);
 }
 
 .testimonials {
@@ -607,7 +607,7 @@ a:hover {
 
 .preview-note {
   text-align: center;
-  color: #6b756f;
+  color: #6b7c86;
   font-size: 0.85rem;
   margin: 0 0 1.5rem;
 }
