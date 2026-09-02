@@ -520,6 +520,25 @@ a:hover {
   line-height: 1.55;
 }
 
+.cv-download {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: #fff;
+  color: var(--green);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cv-download:hover {
+  background: #e8f3eb;
+  color: #15555c;
+}
+
 .testimonials {
   display: grid;
   gap: 0;
