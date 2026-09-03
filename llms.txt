@@ -1,0 +1,20 @@
+# Lester Soriano
+
+Lester Santiago Soriano is a Staff Software Engineer based in Singapore. He has nearly 20 years of experience building backend systems for payments, fintech, and digital commerce.
+
+## Facts
+- Location: Singapore
+- Role: Staff Software Engineer at NTUC Enterprise Nexus Co-operative Limited (Jan 2025 - present)
+- Focus: Go microservices, payments, fintech backends, APIs (REST, gRPC, Protobuf), GCP and AWS
+- Earlier companies: MatchMove Pay, Red Dot Payment, Security Bank Corporation
+- Education: BS Information Technology, Saint Louis University (2000-2005)
+- Spoken languages: English, Filipino
+- Currently studying: Model Context Protocol (MCP) and large language models (LLMs)
+
+## Site
+- Home: https://frozentech03.github.io/
+- About: https://frozentech03.github.io/about.html
+- Resume: https://frozentech03.github.io/resume.html
+- Contact: https://frozentech03.github.io/contact.html
+- LinkedIn: https://www.linkedin.com/in/lester-santiago-soriano
+- Email: lestersoriano@yahoo.com

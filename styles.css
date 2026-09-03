@@ -192,7 +192,7 @@ a {
   letter-spacing: -0.03em;
 }
 
-.hero h1 {
+.hero-role {
   margin: 0 0 0.75rem;
   font-size: clamp(1rem, 1.7vw, 1.15rem);
   font-weight: 500;
