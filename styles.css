@@ -168,9 +168,9 @@ a {
 /* Home */
 .hero {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: stretch;
-  max-height: calc(100vh - var(--header-h) - 3.5rem);
+  max-height: min(720px, calc(100vh - var(--header-h) - 2.5rem));
   min-height: 0;
 }
 
@@ -178,37 +178,44 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(1.25rem, 3.5vw, 2.5rem) clamp(1.25rem, 4vw, 3rem);
-  max-width: 36rem;
+  padding: clamp(1.5rem, 3.5vw, 2.5rem) clamp(1.35rem, 4vw, 3rem);
+  max-width: 38rem;
+  min-height: 0;
 }
 
 .hero-brand {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.35rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-size: clamp(1.9rem, 4vw, 2.85rem);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.03em;
 }
 
 .hero h1 {
-  margin: 0 0 0.7rem;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  margin: 0 0 0.75rem;
+  font-size: clamp(1rem, 1.7vw, 1.15rem);
   font-weight: 500;
-  color: var(--ink-soft);
+  color: var(--blue);
 }
 
 .hero-lede {
-  margin: 0 0 1.25rem;
-  color: var(--muted);
-  max-width: 30rem;
-  font-size: 0.98rem;
+  margin: 0 0 1.15rem;
+  color: var(--ink-soft);
+  max-width: 36rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
+}
+
+.hero-actions .btn {
+  padding: 0.75rem 1.15rem;
+  font-size: 0.88rem;
 }
 
 .hero-visual {
@@ -220,7 +227,7 @@ a {
 .hero-visual img {
   width: 100%;
   height: 100%;
-  max-height: calc(100vh - var(--header-h) - 3.5rem);
+  max-height: min(720px, calc(100vh - var(--header-h) - 2.5rem));
   object-fit: cover;
   object-position: center top;
 }
@@ -719,19 +726,25 @@ body.lightbox-open {
   }
 
   .hero-visual {
-    order: 0;
+    order: -1;
     border-left: none;
-    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-top: none;
+    background: transparent;
   }
 
   .hero-copy {
-    padding: 1.5rem 1.25rem 1.25rem;
+    padding: 1.25rem 1.15rem 1.15rem;
   }
 
   .hero-visual img {
-    max-height: 32vh;
-    min-height: 180px;
-    height: 32vh;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: min(58vh, 480px);
+    min-height: 0;
+    object-fit: cover;
+    object-position: center top;
   }
 
   .gallery {
