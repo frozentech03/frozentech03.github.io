@@ -52,3 +52,40 @@
     }
   });
 })();
+
+(function () {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+
+  const status = form.querySelector(".form-status");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    submitBtn.disabled = true;
+    status.className = "form-status";
+    status.textContent = "Sending…";
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        status.classList.add("is-success");
+        status.textContent = "Thanks — your message has been sent. I'll reply by email soon.";
+        form.reset();
+      } else {
+        throw new Error(result.message || "Something went wrong.");
+      }
+    } catch (error) {
+      status.classList.add("is-error");
+      status.textContent = "Sorry, something went wrong. Please email me directly instead.";
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+})();

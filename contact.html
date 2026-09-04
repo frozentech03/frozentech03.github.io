@@ -119,10 +119,39 @@
           >
         </p>
       </div>
+
+      <div class="contact-card contact-form-card">
+        <h2 class="form-title">Send a message</h2>
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="61e28fde-f493-4418-8a31-78ecfef9f48f" />
+          <input type="hidden" name="subject" value="New message from frozentech03.github.io" />
+          <input type="checkbox" name="botcheck" class="hidden-field" style="display: none" tabindex="-1" autocomplete="off" />
+
+          <div class="form-field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send message</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </main>
 
     <footer class="site-footer">
       <p>&copy; 2026 Lester Santiago Soriano &middot; Staff Software Engineer &middot; Singapore</p>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>

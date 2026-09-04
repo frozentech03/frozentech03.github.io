@@ -474,6 +474,68 @@ body.lightbox-open {
   color: var(--ink);
 }
 
+.contact-form-card {
+  margin-top: 1.5rem;
+}
+
+.form-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  margin: 0 0 1.25rem;
+  color: var(--ink);
+}
+
+.form-field {
+  margin-bottom: 1.1rem;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  margin-bottom: 0.4rem;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-status {
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+}
+
+.form-status.is-success {
+  color: #1a7f4b;
+}
+
+.form-status.is-error {
+  color: #b3261e;
+}
+
 /* ---------- Resume ---------- */
 .resume-panel {
   background: var(--surface);
