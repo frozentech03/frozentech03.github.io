@@ -1,28 +1,50 @@
 /* ==========================================================================
-   Frozentech03 / Lester Santiago Soriano — design system
-   Minimal, corporate, light theme.
+   Lester Santiago Soriano — design system
+   Grounded in Apple's Human Interface Guidelines: semantic color tokens with
+   verified light/dark contrast, a real type scale, and a signature monospace
+   treatment for technical data (dates, tech tags, phone) — a payments/backend
+   engineer's ledger, not a generic portfolio template.
    ========================================================================== */
 
 :root {
-  --bg: #f7f6f2;
+  /* Surfaces — cool graphite-gray, not warm cream */
+  --bg: #f4f5f7;
   --surface: #ffffff;
-  --surface-alt: #f0eee7;
-  --ink: #15181d;
-  --ink-soft: #4b4f56;
-  --ink-faint: #8a8d93;
-  --border: #e4e1d8;
-  --border-strong: #d6d2c6;
+  --surface-alt: #e9ebef;
+  --header-bg: color-mix(in srgb, var(--surface) 88%, transparent);
 
-  --accent: #1b4b8f;
-  --accent-dark: #123564;
-  --accent-soft: #e8eefa;
+  /* Content */
+  --ink: #12151b;
+  --ink-soft: #454a54;
+  --ink-faint: #5b616d;
+
+  /* Structure */
+  --border: #dadde3;
+  --border-strong: #c3c7d0;
+
+  /* Accent — one color, one meaning: links, focus, primary actions */
+  --accent: #2447c4;
+  --accent-dark: #17318c;
+  --accent-soft: #e4e9fb;
+  --on-accent: #ffffff;
+
+  /* Semantic (separate from accent) */
+  --success: #1e7a46;
+  --danger: #b3261e;
 
   --serif: "Fraunces", Georgia, "Times New Roman", serif;
   --sans: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale — two small tiers instead of nine ad hoc sizes, both clear
+     Apple's stated minimums (10pt desktop / 11pt mobile, ~13.3px/14.7px) */
+  --text-meta: 0.9375rem;   /* 15px — labels, dates, chips, footer, nav */
+  --text-small: 0.95rem;    /* 15.2px — secondary body copy */
 
   --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 20px;
+  --radius-chip: 6px;
 
   --shadow-sm: 0 1px 2px rgba(21, 24, 29, 0.06), 0 1px 1px rgba(21, 24, 29, 0.04);
   --shadow-md: 0 12px 28px -8px rgba(21, 24, 29, 0.16);
@@ -31,6 +53,32 @@
   --content: 66ch;
 
   --header-h: 4.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171e;
+    --surface: #1b1f27;
+    --surface-alt: #232833;
+
+    --ink: #eceef2;
+    --ink-soft: #b9bec9;
+    --ink-faint: #8992a3;
+
+    --border: #2b3039;
+    --border-strong: #3a4049;
+
+    --accent: #8fa0ff;
+    --accent-dark: #b7c2ff;
+    --accent-soft: #232c4d;
+    --on-accent: #14171e;
+
+    --success: #5fdb9e;
+    --danger: #ff8a80;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 1px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 12px 28px -8px rgba(0, 0, 0, 0.6);
+  }
 }
 
 /* ---------- Reset ---------- */
@@ -62,7 +110,7 @@ img {
 
 a {
   color: var(--accent);
-  text-decoration-color: rgba(27, 75, 143, 0.35);
+  text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent);
   text-underline-offset: 3px;
 }
 
@@ -80,6 +128,7 @@ h4 {
   margin: 0 0 0.6em;
   font-weight: 600;
   letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 p {
@@ -101,13 +150,28 @@ button {
   border-radius: 4px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ---------- Skip link ---------- */
 .skip-link {
   position: absolute;
   left: -999px;
   top: 0;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
   padding: 0.75rem 1.25rem;
   border-radius: 0 0 8px 0;
   z-index: 200;
@@ -129,7 +193,7 @@ button {
   gap: 1.5rem;
   height: var(--header-h);
   padding-inline: clamp(1.25rem, 4vw, 2.5rem);
-  background: rgba(247, 246, 242, 0.86);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
@@ -138,15 +202,18 @@ button {
 .nav {
   display: flex;
   gap: clamp(1rem, 2.5vw, 2rem);
-  font-size: 0.92rem;
+  font-size: var(--text-meta);
   font-weight: 500;
 }
 
 .nav a {
+  display: inline-flex;
+  align-items: center;
   color: var(--ink-soft);
   text-decoration: none;
-  padding: 0.4rem 0.1rem;
+  padding: 0.75rem 0.15rem;
   position: relative;
+  min-height: 44px;
 }
 
 .nav a:hover {
@@ -162,7 +229,7 @@ button {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -2px;
+  bottom: 0.65rem;
   height: 2px;
   background: var(--accent);
   border-radius: 2px;
@@ -189,12 +256,12 @@ button {
 
 .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn-primary:hover {
   background: var(--accent-dark);
-  color: #fff;
+  color: var(--on-accent);
 }
 
 .btn-ghost {
@@ -217,7 +284,7 @@ button {
   border: 1px solid var(--border-strong);
   color: var(--ink);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: var(--text-meta);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -251,7 +318,7 @@ button {
   background: var(--accent-soft);
   color: var(--accent-dark);
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: var(--text-meta);
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -374,7 +441,7 @@ button {
   margin-top: 2.25rem;
 }
 
-/* ---------- Lightbox ---------- */
+/* ---------- Lightbox (deliberately theme-invariant: always a dark stage) ---------- */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -450,7 +517,7 @@ body.lightbox-open {
 }
 
 .contact-links .label {
-  font-size: 0.78rem;
+  font-size: var(--text-meta);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -466,6 +533,11 @@ body.lightbox-open {
 
 .contact-links a:hover {
   color: var(--accent);
+}
+
+.contact-links a[href^="tel:"] {
+  font-family: var(--mono);
+  letter-spacing: 0.01em;
 }
 
 .contact-links span:not(.label) {
@@ -491,7 +563,7 @@ body.lightbox-open {
 
 .form-field label {
   display: block;
-  font-size: 0.78rem;
+  font-size: var(--text-meta);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -508,7 +580,7 @@ body.lightbox-open {
   background: var(--surface);
   color: var(--ink);
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 1rem; /* 16px avoids iOS Safari auto-zoom on focus */
 }
 
 .form-field input:focus,
@@ -524,16 +596,16 @@ body.lightbox-open {
 
 .form-status {
   margin: 0.9rem 0 0;
-  font-size: 0.9rem;
+  font-size: var(--text-meta);
   min-height: 1.2em;
 }
 
 .form-status.is-success {
-  color: #1a7f4b;
+  color: var(--success);
 }
 
 .form-status.is-error {
-  color: #b3261e;
+  color: var(--danger);
 }
 
 /* ---------- Resume ---------- */
@@ -565,7 +637,7 @@ body.lightbox-open {
   color: var(--accent-dark);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.82rem;
+  font-size: var(--text-meta);
   letter-spacing: 0.05em;
   margin: 0;
 }
@@ -580,10 +652,10 @@ body.lightbox-open {
   overflow-x: auto;
   padding: 0.85rem 0;
   margin-bottom: 2rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--border);
-  font-size: 0.85rem;
+  font-size: var(--text-meta);
   font-weight: 600;
 }
 
@@ -642,7 +714,7 @@ body.lightbox-open {
 
 .skills-board h3 {
   font-family: var(--sans);
-  font-size: 0.82rem;
+  font-size: var(--text-meta);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -668,7 +740,7 @@ body.lightbox-open {
 }
 
 .tech-skills dt {
-  font-size: 0.8rem;
+  font-size: var(--text-meta);
   font-weight: 600;
   color: var(--ink-faint);
 }
@@ -676,7 +748,7 @@ body.lightbox-open {
 .tech-skills dd {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 0.92rem;
+  font-size: var(--text-small);
   line-height: 1.55;
 }
 
@@ -692,17 +764,19 @@ body.lightbox-open {
   color: var(--accent-dark);
   border-radius: 999px;
   padding: 0.35rem 0.85rem;
-  font-size: 0.85rem;
+  font-size: var(--text-meta);
   font-weight: 600;
 }
 
 .skills-board > div > p {
   color: var(--ink-soft);
-  font-size: 0.92rem;
+  font-size: var(--text-small);
   margin: 0;
 }
 
-/* Tag pills (core competencies / tech-line) */
+/* Tag pills (core competencies / tech-line) — rendered as code tokens:
+   monospace + a tighter chip radius, distinct from the soft trait pills
+   above. Structure signals meaning: this is technical data. */
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -715,10 +789,11 @@ body.lightbox-open {
   background: var(--surface-alt);
   border: 1px solid var(--border);
   color: var(--ink-soft);
-  border-radius: 999px;
+  border-radius: var(--radius-chip);
   padding: 0.3rem 0.75rem;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  font-weight: 500;
   line-height: 1.3;
 }
 
@@ -790,8 +865,10 @@ body.lightbox-open {
   flex-wrap: wrap;
   gap: 0 0.6rem;
   color: var(--ink-faint);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--mono);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 
@@ -807,7 +884,7 @@ body.lightbox-open {
 
 .job-blurb {
   color: var(--ink-soft);
-  font-size: 0.95rem;
+  font-size: var(--text-small);
   font-style: italic;
   margin-bottom: 0.85rem;
 }
@@ -824,7 +901,7 @@ body.lightbox-open {
   position: relative;
   padding-left: 1.15rem;
   color: var(--ink-soft);
-  font-size: 0.95rem;
+  font-size: var(--text-small);
   line-height: 1.65;
 }
 
@@ -868,7 +945,7 @@ body.lightbox-open {
 
 .job-top .company {
   font-family: var(--sans);
-  font-size: 0.9rem;
+  font-size: var(--text-meta);
   color: var(--ink-soft);
   margin: 0;
 }
@@ -913,19 +990,20 @@ body.lightbox-open {
 }
 
 .testimonial-title {
-  font-size: 0.82rem;
+  font-size: var(--text-meta);
   color: var(--ink-soft);
   margin: 0;
 }
 
 .testimonial-date {
-  font-size: 0.78rem;
+  font-family: var(--mono);
+  font-size: var(--text-meta);
   color: var(--ink-faint);
   margin: 0.1rem 0 0;
 }
 
 .testimonial-body {
-  font-size: 0.92rem;
+  font-size: var(--text-small);
   line-height: 1.65;
   color: var(--ink-soft);
   margin: 0;
@@ -940,7 +1018,7 @@ body.lightbox-open {
   margin: 0 auto;
   padding: 2rem clamp(1.25rem, 4vw, 2.5rem) 3rem;
   color: var(--ink-faint);
-  font-size: 0.85rem;
+  font-size: var(--text-meta);
   border-top: 1px solid var(--border);
 }
 
@@ -960,7 +1038,6 @@ body.lightbox-open {
 
   .nav {
     gap: 1rem;
-    font-size: 0.85rem;
   }
 }
 
